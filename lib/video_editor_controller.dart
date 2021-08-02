@@ -1,7 +1,7 @@
 import 'dart:io';
+import 'package:cached_video_player/cached_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:video_slider/trim_slider_style.dart';
-import 'package:video_player/video_player.dart';
 
 ///_max = Offset(1.0, 1.0);
 const Offset _max = Offset(1.0, 1.0);
@@ -123,5 +123,6 @@ class VideoEditorController extends ChangeNotifier {
   }
 
   ///Get the **VideoPosition** (Range is `0.0` to `1.0`).
-  double get trimPosition => videoPosition.inMilliseconds / videoDuration.inMilliseconds;
+  double get trimPosition =>
+      videoPosition.inMilliseconds / videoDuration.inMilliseconds;
 }

@@ -1,8 +1,8 @@
+import 'package:cached_video_player/cached_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:video_slider/thumbnail_slider.dart';
 import 'package:video_slider/trim_slider_painter.dart';
 import 'package:video_slider/video_editor_controller.dart';
-import 'package:video_player/video_player.dart';
 
 enum _TrimBoundaries { left, right, inside, progress, none }
 
@@ -44,7 +44,9 @@ class _VideoSliderState extends State<VideoSlider> {
   void initState() {
     _controller = widget.controller.video;
     final duration = _controller.value.duration;
-    _maxDuration = widget.maxDuration == null || _maxDuration! > duration ? duration : widget.maxDuration;
+    _maxDuration = widget.maxDuration == null || _maxDuration! > duration
+        ? duration
+        : widget.maxDuration;
     super.initState();
   }
 
@@ -153,7 +155,9 @@ class _VideoSliderState extends State<VideoSlider> {
       _rect = Rect.fromLTWH(
         0.0,
         0.0,
-        (_maxDuration!.inMilliseconds / _controller.value.duration.inMilliseconds) * _layout.width,
+        (_maxDuration!.inMilliseconds /
+                _controller.value.duration.inMilliseconds) *
+            _layout.width,
         widget.height,
       );
     } else {
@@ -177,7 +181,8 @@ class _VideoSliderState extends State<VideoSlider> {
   }
 
   void _updateControllerIsTrimming(bool value) {
-    if (_boundary.value != _TrimBoundaries.none && _boundary.value != _TrimBoundaries.progress) {
+    if (_boundary.value != _TrimBoundaries.none &&
+        _boundary.value != _TrimBoundaries.progress) {
       widget.controller.isTrimming = value;
     }
   }
